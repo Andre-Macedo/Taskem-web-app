@@ -1,15 +1,14 @@
 import React from "react";
+import "./styles/app.scss"
+import "./styles/main.scss"
+import { Login } from "./pages/Login";
+import { Main } from "./pages/Main"
 
 function App() {
 
-  const list = ["aodd", "kfoaf", "faf", "dkf", "kfmf"]
-
   return (
     <div>
-      <h1>Meu primeiro react</h1>
-      <ul>
-        {list.map(item => <li>{item}</li>)}
-      </ul>
+      <Login />
     </div>
   );
 }

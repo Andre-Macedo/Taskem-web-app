@@ -1,0 +1,84 @@
+@import "~bootstrap/scss/bootstrap";
+@import "./config.scss";
+
+
+.navBar {
+    display: flex;
+    // flex-direction: row;
+
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+
+    background-color: $primaryColor;
+
+    color: white;
+
+    input[type=checkbox] {
+        display: none;
+    }
+
+    .hamburger {
+        display: none;
+        font-size: 24px;
+        user-select: none;
+    }
+
+    .logo {
+        width: 144px;
+        height: 72px;
+    }
+
+    .nav-links {
+        margin-bottom: 0;
+    }
+
+    .menu {
+        display: flex;
+        gap: 2em;
+        font-size: 24px;
+        margin-right: 30px;
+
+
+        li {
+            padding: 15px;
+            list-style: none;
+        }
+
+        li:hover {
+            background-color: $primaryColorDark;
+            border-radius: 5px;
+            transition: 0.3s ease;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .menu {
+            display: none;
+            position: absolute;
+            background-color: teal;
+            right: 0;
+            left: 0;
+            text-align: center;
+            padding: 16px 0;
+        }
+
+        .menu li:hover {
+            display: inline-block;
+            background-color: #4c9e9e;
+            transition: 0.3s ease;
+        }
+
+        .menu li+li {
+            margin-top: 12px;
+        }
+
+        input[type=checkbox]:checked~.menu {
+            display: block;
+        }
+
+        .hamburger {
+            display: block;
+        }
+    }
+}
