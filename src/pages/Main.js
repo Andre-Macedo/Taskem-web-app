@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../assets/icons/dnd-5e-logo.svg"
+import logo from "../assets/icons/Taskem-Logo.svg"
 import "../styles/main.scss"
 
 

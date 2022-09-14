@@ -1,38 +1,57 @@
 import React, { useState } from "react";
-import logo from "../assets/icons/dnd-5e-logo.svg"
-import logo2 from "../assets/icons/5e D&D Logo 1(1).svg"
+import { Input } from "../components/Input"
+import logo from "../assets/icons/Taskem-Logo.svg"
+import email from "../assets/icons/mail.svg"
+import lock from "../assets/icons/lock.svg"
+import { executeRequest } from "../services/api";
 
 
-function Login() {
+export const Login = props => {
 
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
-    const [isLoading, setLoading] = useState(false)
+    const [errorMsg, setErrorMsg] = useState("")
+    const [isLoading, setLoading] = useState(false);
 
-    const executeLogin = event => {
-        event.preventDefault()
-        setLoading(true)
-        console.log(login);
-        console.log(password);
+    const executeLogin = async event => {
+        try {
+            event.preventDefault();
+            setLoading(true);
+            setErrorMsg("");
 
-        setTimeout(() => {
-            setLoading(false)
-        }, 3000);
-    }
+            const body = {
+                login,
+                password
+            };
+
+            const result = await executeRequest("login", "POST", body);
+            if (result?.data?.token) {
+                localStorage.setItem("accessToken", result.data.token);
+                localStorage.setItem("userEmail", result.data.email);
+                localStorage.setItem("userName", result.data.name);
+                props.setAccessToken(result.data.token);
+            }
+            console.log(result);
+        } catch (e) {
+            console.log(e);
+            if (e?.response?.data?.error) {
+                setErrorMsg(e.response.data.error)
+            };
+        };
+        setLoading(false)
+    };
 
 
     return (
         <div className="container-login">
-            <div className="container-logo">
-                <img className="logo" src={logo2} alt="Dungeons and Dragons fifith edition logo"></img>
-                {/* <p className="logo-text">New character</p> */}
-            </div>
+            <img className="logo" src={logo} alt="Taskm Logo"></img>
 
             <form >
-                <input className="username" type="text" name="login" placeholder="Username"
-                    value={login} onChange={event => setLogin(event.target.value)}></input>
-                <input className="password" type="password" name="password" placeholder="Password"
-                    value={password} onChange={event => setPassword(event.target.value)}></input>
+                {errorMsg && <p>{errorMsg}</p>}
+                <Input imgSrc={email} inputType="text" inputName="login" inputPlaceholder="Username"
+                    value={login} setValue={setLogin}></Input>
+                <Input imgSrc={lock} inputType="password" inputName="password" inputPlaceholder="Password"
+                    value={password} setValue={setPassword}></Input>
                 <button className="login-button" onClick={executeLogin} disabled={isLoading} >{isLoading === true ? "...Loading" : "Login"}</button>
                 <a>Register here</a>
             </form>
@@ -40,5 +59,3 @@ function Login() {
         </div>
     )
 };
-
-export { Login };
