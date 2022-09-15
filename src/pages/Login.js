@@ -36,7 +36,9 @@ export const Login = props => {
             console.log(e);
             if (e?.response?.data?.error) {
                 setErrorMsg(e.response.data.error)
-            };
+            } else {
+                setErrorMsg("Not possible to access database.")
+            }
         };
         setLoading(false)
     };
