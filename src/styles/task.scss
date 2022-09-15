@@ -10,7 +10,7 @@
     border-radius: 12px;
     padding: 10px;
     margin-top: 10px;
-    height: 50px;
+    height: 55px;
 
     img {
         width: 18px;
@@ -22,13 +22,36 @@
             color: $darkGreyColor;
             margin: 0px;
             font-weight: bold;
-            font-size: 15px
+            font-size: 15px;
+
+            &.finished {
+                text-decoration: line-through;
+            }
         }
 
         span {
             color: $darkGreyColor;
             font-weight: normal;
             font-size: 14px;
+        }
+    }
+
+    @media screen and (min-width:992px) {
+        height: 70px;
+        padding: 20px;
+
+        &.active {
+            cursor: pointer;
+
+            img {
+                width: 20px;
+            }
+
+            &:hover {
+                border-color: $primaryColor;
+                border-style: solid;
+                border-width: 1px;
+            }
         }
     }
 }

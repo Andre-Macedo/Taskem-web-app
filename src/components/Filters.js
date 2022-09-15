@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import filter from "../assets/icons/filter.svg"
 
-export const Filters = () => {
+export const Filters = props => {
+
+    const { periodStart, periodEnd, status, setPeriodStart, setPeriodEnd, setStatus } = props;
 
     const [showFilters, setShowFilters] = useState(false)
 
@@ -12,16 +14,16 @@ export const Filters = () => {
                 <div className="form">
                     <div>
                         <label>Scheduled from:</label>
-                        <input type="date" />
+                        <input type="date" value={periodStart} onChange={event => setPeriodStart(event.target.value)} />
                     </div>
                     <div>
                         <label>to:</label>
-                        <input type="date" />
+                        <input type="date" value={periodEnd} onChange={event => setPeriodEnd(event.target.value)} />
                     </div>
                     <div className="line" />
                     <div>
                         <label>Status</label>
-                        <select>
+                        <select value={status} onChange={event => setStatus(event.target.value)}>
                             <option value={0}>All</option>
                             <option value={1}>Open</option>
                             <option value={2}>Finished</option>
