@@ -31,6 +31,7 @@ body {
 @import "./list.scss";
 @import "./footer.scss";
 @import "./task.scss";
+@import "./modal.scss";
 
 input,
 select {
@@ -46,7 +47,7 @@ select {
     border-top-width: 0em;
     border-left-width: 0em;
     border-right-width: 0em;
-    border-bottom-width: 0em;
+    border-bottom-width: 0.5px;
     border-color: $mediumGreyColor;
 
     outline: none;

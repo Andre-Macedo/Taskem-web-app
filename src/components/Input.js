@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export const Input = props => {
     const {
@@ -12,7 +12,7 @@ export const Input = props => {
     } = props;
 
     return (
-        <div className="input">
+        <div className='input'>
             <img src={imgSrc} alt={altImg}></img>
             <input
                 type={inputType}
